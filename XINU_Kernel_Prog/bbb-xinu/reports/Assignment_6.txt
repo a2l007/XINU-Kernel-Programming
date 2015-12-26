@@ -1,0 +1,16 @@
+CSCI P 536 - Advanced Operating Systems
+Assignment 6 Solutions
+
+Exercise 9.4:
+
+We have implemented two memory management functions: allocstk() and allocmem() which allocates stack space and heap space respectively. Allocstk() works on a worst-fit allocation approach 
+and Allocmem() works on a best-fit allocation approach. We have created a shell command 'memcmp' which is used to compare the functionalities of allocmem v/s getmem and allocstk v/s getstk.
+
+While allocating memory using getmem(), we are freeing the memory in the end by calling freemem(). In the case of allocmem(), freemem() is not being called and as a result, 
+the allocated memory would not be freed. 
+
+Similiarly, the create() system call is reimplemented as 'newcreate' which would call allocstk instead of getstk(). Here, processes are spawned by invoking create as well as newcreate.
+
+The main difference between allocmem v/s getmem and allocstk v/s getstk is that at any given point, the free memory list while using allocstk or allocmem will always have only a single 
+memory block which has the total remaining free memory size. For the free memory list which uses getstk() and getmem(), the free memory list can have multiple free memory blocks of varying
+size. This is because memory need not be freed in the same order as they were allocated. This can lead to creation of small unusable memory fragments. 

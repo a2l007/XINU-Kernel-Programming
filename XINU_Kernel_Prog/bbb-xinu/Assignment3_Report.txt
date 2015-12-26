@@ -1,0 +1,29 @@
+									CSCI P536
+									Assignment 3
+Solutions:
+
+1. How exactly is sychronization achieved using semaphore in our assignnment?
+Ans:	Synchronization is achieved using two semaphores namely 'produced' and 'consumed'. The sequence of operations is as follows:
+	- Initially Producer calls wait on the 'produced' semaphore which turns its value to zero. This does not block the Producer and thus it increments the shared variable and prints the value.
+	- Consumer waits on the semaphore 'consumed', which becomes non negative only once producer signals this semaphore.
+	- Once the 'consumed' semaphore is signalled, its value turns non negative and the Consumer prints the value of shared variable and decrements it.
+	- After producer executes, it waits on the semaphore 'produced' which turns non negative only once consumer completes its execution and signals this semaphore.
+	- This repeats and thus we can ensure a synchronization between both the processes.
+
+2.     Can the above sychronization be achieved with just one semphore? Why or why not?
+Ans: No, the synchronization cannot be achieved using one semaphore because one semaphore cannot be synchronously used amongst two processes. In the scenario of a Producer-Consumer problem, 
+   if one of the processes(Producer) is running, the other process(Consumer) should wait until the Producer blocks and vice versa. 
+   The implementation of a single semaphore Producer-Consumer problem would result in either both the processes waiting on each other for signaling the semaphore or both the processes running simulataneously.
+   
+The various functions of the project are as follows:
+1. Producer(): The producer runs for count number of times. For each run, it does a wait on the producer semaphore first and then assigns the value of count to the global variable. After this operation, it signals the consumer semaphore.
+2. Consumer(): The consumer runs for count number of times. For each run, it does a wait on the consumer semaphore first and then decrements the value of the global variable after printing the value. After this operation, it signals the producer semaphore.
+
+Validations:
+1. Checks if the argument for the prodcons command is a numeric value. If not, it throws an error with the appropriate advice.
+2. Checks if there are more than two arguments are input for the prodcons command. If so, it throws an error.
+
+Tasks developed by team members:
+
+Amish Shah - Developed function Producer() and Validation No. 1 
+Atul Mohan - Developed function Consumer() and Validation No. 2

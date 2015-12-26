@@ -1,0 +1,21 @@
+CSCI P536 Assignment 5 Part 2 Solutions
+
+Functionalities:
+1. We have implemented two queues: one for the future 'get' requests and one for the 'set' requests. The queue has methods to enqueue and dequeue elements.
+
+2. For the flag 'FUTURE_SHARED', threads calling get before set is called are enqueued into the get_queue. Once the set thread is called, all the get processes are dequeued and value is assigned. 
+
+3. If the flag is 'FUTURE_QUEUE' threads calling 'future_get()' would get enqueued to 'get_queue' if no threads calling 'future set' are present. If there is a 'future set' thread enqueued, it 
+   would be dequeued and the value would be set on the future after which future get retrieves the value.
+   Further, threads calling future_set() would get enqueued to set_queue if no threads calling 'future get' are present in the get queue. If there is a 'future get' thread enqueued, future set would set
+   the value of the future and dequeue a thread from the get queue.
+  
+   The queue has been designed to function in a FIFO order.
+   Representation of various future states for FUTURE_QUEUE:
+   FUTURE_EMPTY: There are no threads waiting in both get_queue and set_queue
+   FUTURE_WAITING: There are threads waiting on the get_queue
+   FUTURE_VALID: There are no threads waiting on the get_queue but there are threads waiting on the set_queue
+
+Implementation of the 'Queue' data structure and the 'Future_Shared' was done by Amish Shah
+
+Implementation of both the cases for 'Future_Queue' was done by Atul Mohan

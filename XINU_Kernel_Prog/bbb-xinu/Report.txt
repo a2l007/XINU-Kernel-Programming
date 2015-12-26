@@ -1,0 +1,26 @@
+CSCI P536 ADVANCED OPERATING SYSTEMS
+            FALL 2015
+	ASSIGNMENT - 2 SOLUTIONS
+
+Team Members: 	Atul Mohan
+		Amish Shah
+
+1. Does your program output any garbage? If yes, why? 
+Ans: Yes the program prints garbage for higher values of input count value. The reason for this is because of lack of synchronization between the producer and the consumer process.
+Since both the producer and consumer prints to stdout parallely without any synchronization, garbage values are expected.
+
+2. Are all the produced values getting consumed? Check your program for a small count like 20.
+No, not all the produced values are getting consumed. For a count of 20, only 17 values are getting consumed by the consumer.
+
+The various functions include:
+1. Producer(): The producer runs for count number of times and assigns the value of count to the global variable.
+2. Consumer(): The consumer runs for count number of times and the value of global variable is decremented in each iteration.
+
+Validations:
+1. Checks if the argument for the prodcons command is a numeric value. If not, it throws an error with the appropriate advice.
+2. Checks if there are more than two arguments are input for the prodcons command. If so, it throws an error.
+
+Tasks developed by team members:
+
+Amish Shah - Developed function Producer() and Validation No. 1 
+Atul Mohan - Developed function Consumer() and Validation No. 2

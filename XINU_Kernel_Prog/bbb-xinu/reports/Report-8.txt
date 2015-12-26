@@ -1,0 +1,23 @@
+								CSCI P536 Advanced Operating Systems
+									Filesystems Assignment
+								     Atul Mohan & Amish Shah
+
+In this assignment we have implemented a simple in memory filesystem. The following functions have been implemented:
+
+1. fs_create() - This function will create a new file with the mode specified and return the file descriptor of the new file. Internally, fs_create uses the next_open_fd variable to get the
+   next available file descriptor number and assigns values for all the members of the filetable as well as the inode structure.
+2. fs_open() - This function will open a file with the flag specified and the file descriptor is returned. Internally it checks if the input file name exists and returns the appropriate file
+   descriptor. Else it will report an error.The state of the file is changed to FSTATE_OPEN.
+3. fs_write() - This function will write nbytes blocks of data from the pointer to the file that is passed to this function. Internally, the function initially allocates the required number
+   of free disk blocks and then nbytes of data are written to the disk, one block at a time. All operations with the bs_bread and bs_bwrite functions are handled using the block_cache. 
+   The function also keeps track of the current file pointer so that the next read/write happens from the current position of filepointer.
+4. fs_read() - This will read n bytes of data of the file and store it to the character pointer passed to this function. Internally, the function checks the number of disk blocks to be read
+   and each block of data specific to the file is read from the disk and stored into the target pointer. All bs_bread and bs_bwrite operations are performed via the block_cache. The data is 
+   read from the disk block by block. It reads the data from the specific file pointer location and reads nbytes of data.
+5. fs_seek()- This function will move the offset by target number of bytes. The logic is original_offset=original_offset+target_bytes
+6. fs_close()- This function closes the file corresponding to the file descriptor. Internally the function changes the state of file from FSTATE_OPEN to FSTATE_CLOSED.
+7. fs_mount() - This function reads in the superblock and assigns the filenames of the created files to the directory structure of the filesystem structure. It also updates the numentries
+   value to the latest number of created files.
+
+Functions 1,2,and 5 has been completed by Amish Shah.
+Functions 3,4,6 and 7 has been completed by Atul Mohan.

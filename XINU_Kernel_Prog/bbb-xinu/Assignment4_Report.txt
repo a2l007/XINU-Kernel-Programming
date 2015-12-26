@@ -1,0 +1,17 @@
+				CSCI-P536
+				ASSIGNMENT 4
+
+Functions of Assignment 4:
+
+1. future_get(future *f, integer *value): This function will fetch the value from a valid future object and assign it to the 'value' pointer. If the future is empty, this method will block until the
+future has been set with a value. Subsequent calls to a waiting future object would error out.
+2. future_set(future *f, integer *value): This function will fetch the value from the 'value' pointer and assign it to the future value. The future state is then made valid. If the future was in waiting 
+state, this function would signal the process , once the value has been assigned. This function would error out, if the set is called on a valid future.
+3. future_alloc(int future_flag):  This function allocates memory for a future instance. Returns OK signal upon successful allocation and SYSERR upon failure.
+4. future_free(future *f):  This function frees memory for a future instance. Returns OK signal upon successful deallocation and SYSERR upon failure.
+
+As all the functions are system calls, we have implemented  interrupt processing in all the functions.
+
+Contributions:
+1. Atul - Functions 1 and 3
+2. Amish- Functions 2 and 4
